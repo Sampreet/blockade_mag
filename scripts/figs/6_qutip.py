@@ -1,0 +1,59 @@
+import numpy as np
+import qutip
+import time
+
+# parameters
+N       = 5
+kappa   = 1.0
+gamma   = 1.11 * kappa
+gamma   = 1.1 * kappa # alt
+delta_2 = 0.1 * kappa
+g_1     = 0.8 * kappa
+g_2     = 0.1 * kappa
+Omega   = 1e-3 * kappa
+dim_1   = 101
+dim_2   = 501
+
+# operators
+s_q = qutip.tensor(qutip.destroy(2), qutip.qeye(N), qutip.qeye(N))
+m_1 = qutip.tensor(qutip.qeye(2), qutip.destroy(N), qutip.qeye(N))
+m_2 = qutip.tensor(qutip.qeye(2), qutip.qeye(N), qutip.destroy(N))
+n_q = s_q.dag() * s_q
+n_1 = m_1.dag() * m_1
+n_2 = m_2.dag() * m_2
+num = m_1.dag() * m_1.dag() * m_1 * m_1
+
+# initialize
+delta_1s= np.linspace(-0.5, 0.5, dim_1) * kappa
+delta_qs= np.linspace(-0.25, 0.25, dim_2) * kappa
+X, Y    = np.meshgrid(delta_1s / kappa, delta_qs / kappa)
+g_2_0s  = np.zeros((dim_2, dim_1))
+start   = time.time()
+
+# collapse operators
+c_ops = [np.sqrt(kappa) * m_1, np.sqrt(kappa) * m_2, np.sqrt(gamma) * s_q]
+
+# iterate
+for i in range(len(delta_qs)):
+    # display
+    time_elapsed = time.time() - start
+    progress = i / (dim_2 - 1) * 100
+    print('\r{:0.3f}s\t'.format(time_elapsed) + ('\t' if time_elapsed < 100.0 else '') + 'Progress: {:0.2f}%'.format(progress), end='\t')
+
+    # update qubit detuning
+    delta_q = delta_qs[i]
+    for j in range(len(delta_1s)):
+        # update magnon detuning
+        delta_1 = delta_1s[j]
+
+        # Hamiltonian
+        H = delta_q * n_q + delta_1 * n_1 + delta_2 * n_2 + g_1 * (s_q.dag() * m_1 + s_q * m_1.dag()) + g_2 * (s_q.dag() * m_2 + s_q * m_2.dag()) + Omega * (m_1.dag() + m_1)
+
+        # steady state sovler
+        rho = qutip.steadystate(H, c_ops)
+
+        # update correlations
+        g_2_0s[i][j] = qutip.expect(num, rho) / qutip.expect(n_1, rho)**2
+
+# save data
+np.savez_compressed('data/figs/6_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_2, g_1, g_2, Omega, dim_1, dim_2]]), X, Y, g_2_0s)
