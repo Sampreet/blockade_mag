@@ -1,16 +1,17 @@
+# dependencies
 import numpy as np
 import qutip
 import scipy.constants as sc
 import time
 
-# parameters
+# system parameters
 N       = 5
 kappa   = 1.0
 gamma   = 1.11 * kappa
 g_1     = 0.8 * kappa
 Omega   = 1e-3 * kappa
 omega_ms= [8.2e9, 8.6e9]
-dim     = 201
+dim     = 251
 
 # zero detunings
 delta_q = 0.0 * kappa
@@ -18,11 +19,11 @@ delta_1 = 0.0 * kappa
 delta_2 = 0.0 * kappa
 g_2     = 0.161 * g_1
 
-# # finite detunings
-# delta_q = 0.1 * kappa
-# delta_1 = -0.276 * kappa
-# delta_2 = 0.1 * kappa
-# g_2     = 0.137 * g_1
+# finite detunings
+delta_q = 0.1 * kappa
+delta_1 = -0.276 * kappa
+delta_2 = 0.1 * kappa
+g_2     = 0.137 * g_1
 
 # operators
 s_q = qutip.tensor(qutip.destroy(2), qutip.qeye(N), qutip.qeye(N))
@@ -37,9 +38,9 @@ num = m_1.dag() * m_1.dag() * m_1 * m_1
 H = delta_q * n_q + delta_1 * n_1 + delta_2 * n_2 + g_1 * (s_q.dag() * m_1 + s_q * m_1.dag()) + g_2 * (s_q.dag() * m_2 + s_q * m_2.dag()) + Omega * (m_1.dag() + m_1)
 
 # initialize
-Ts      = np.linspace(2, 6, dim) * 1e-3
-g_2_0s  = np.zeros(dim)
-start   = time.time()
+Ts = np.linspace(1, 6, dim) * 1e-3
+g_2_0s = np.zeros(dim)
+start = time.time()
 
 # iterate
 for i in range(len(Ts)):
@@ -67,4 +68,4 @@ for i in range(len(Ts)):
     g_2_0s[i] = qutip.expect(num, rho) / qutip.expect(n_1, rho)**2
 
 # save data
-np.savez_compressed('data/figs/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]), Ts, g_2_0s)
+np.savez_compressed('data/figures/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]), Ts, g_2_0s)

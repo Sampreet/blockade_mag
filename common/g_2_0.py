@@ -1,6 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+ 
+"""Module for expressions."""
+
+__authors__ = ["Sampreet Kalita"]
+__toolbox__ = 'qom-v1.0.1'
+__created__ = "2023-05-23"
+__updated__ = "2024-01-11"
+
+# dependencies
 import numpy as np
 
 def get_g_2_0_analytical(params):
+    r"""Function to obtain the analytical value of :math:`g^{(2)} (0)`.
+
+    Parameters
+    ----------
+    params : list
+        Parameters of the system as list, :math:`[\kappa, \gamma, \delta_{q}, \delta_{1}, \delta_{2}, g_{1}, g_{2}, \Omega]`.
+
+    Returns
+    -------
+    g_2_0 : float
+        The analytical value of :math:`g^{(2)} (0)`.
+    """
+
+    # extract parameters
     kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega = params
         
     # frequently used expressions
@@ -44,6 +69,20 @@ def get_g_2_0_analytical(params):
     return g_2_0
 
 def get_g_2_0_simplified(params):
+    r"""Function to obtain the simplified value of :math:`g^{(2)} (0)`.
+
+    Parameters
+    ----------
+    params : list
+        Parameters of the system as list, :math:`[\kappa, \gamma, \delta_{q}, \delta_{1}, \delta_{2}, g_{1}, g_{2}, \Omega]`.
+
+    Returns
+    -------
+    g_2_0 : float
+        The simplified value of :math:`g^{(2)} (0)`.
+    """
+
+    # extract parameters
     kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega = params
         
     # frequently used expressions
@@ -76,6 +115,22 @@ def get_g_2_0_simplified(params):
     return g_2_0
 
 def get_condition(params):
+    r"""Function to obtain the condition for unconditional magnon blockade.
+
+    The closer the value is to zero, the higher is the antibunching.
+
+    Parameters
+    ----------
+    params : list
+        Parameters of the system as list, :math:`[\kappa, \gamma, \delta_{q}, \delta_{1}, \delta_{2}, g_{1}, g_{2}, \Omega]`.
+
+    Returns
+    -------
+    condition : float
+        The condition for unconditional magnon blockade.
+    """
+
+    # extract parameters
     kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega = params
         
     # frequently used expressions
