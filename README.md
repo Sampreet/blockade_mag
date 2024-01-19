@@ -4,7 +4,7 @@
 [![Toolbox Version](https://img.shields.io/badge/qom-v1.0.1-red?style=for-the-badge)](https://sampreet.github.io/qom-docs/v1.0.1)
 [![Last Updated](https://img.shields.io/github/last-commit/sampreet/blockade_mag?style=for-the-badge)](https://github.com/sampreet/blockade_mag/blob/master/CHANGELOG.md)
 
-> J. Opt. Soc. Am. B 41, 1 (2024)
+> J. Opt. Soc. Am. B 41, 447 (2024)
 
 Author | Affiliation
 ------------ | -------------

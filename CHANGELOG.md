@@ -1,8 +1,12 @@
 # Changelog
 
-## 2024/01/15 - 01 - Minor Edits
+## 2024/01/19 - 00 - Updated README
 > Toolbox version 1.0.1
-* Added `README`.
+* Updated `README`.
+
+## 2024/01/11 - 01 - Minor Edits
+> Toolbox version 1.0.1
+* Updated `README`.
 
 ## 2024/01/11 - 00 - Added Notebook
 > Toolbox version 1.0.1
