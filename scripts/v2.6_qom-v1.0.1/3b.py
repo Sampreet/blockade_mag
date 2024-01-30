@@ -24,7 +24,7 @@ dim_1   = 201
 dim_2   = 201
 
 # load data
-data = np.load('data/v2.6_qom-v1.0.1/3_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_2, g_1, Omega, dim_1, dim_2]]) + '.npz')
+data = np.load('data/v2.6_qutip-v4.7.3/3_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_2, g_1, Omega, dim_1, dim_2]]) + '.npz')
 X = data['arr_0']
 Y = data['arr_1']
 g_2_0s = data['arr_2']

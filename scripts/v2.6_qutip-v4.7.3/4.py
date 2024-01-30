@@ -8,8 +8,8 @@ N       = 5
 kappa   = 1.0
 gamma   = 1.11 * kappa
 # gamma   = 1.1 * kappa # alt
-delta_q = 0.0 * kappa
-delta_2 = 0.0 * kappa
+delta_q = 0.1 * kappa
+delta_2 = 0.1 * kappa
 g_1     = 0.8 * kappa
 Omega   = 1e-3 * kappa
 dim_1   = 201
@@ -25,7 +25,7 @@ n_2 = m_2.dag() * m_2
 num = m_1.dag() * m_1.dag() * m_1 * m_1
 
 # initialize
-delta_1s = np.linspace(-0.1, 0.1, dim_1) * kappa
+delta_1s = np.linspace(-0.35, -0.15, dim_1) * kappa
 g_2s = np.linspace(0.05, 0.25, dim_2) * g_1
 X, Y = np.meshgrid(delta_1s / kappa, g_2s / g_1)
 g_2_0s = np.zeros((dim_2, dim_1))
@@ -57,4 +57,4 @@ for i in range(len(g_2s)):
         g_2_0s[i][j] = qutip.expect(num, rho) / qutip.expect(n_1, rho)**2
 
 # save data
-np.savez_compressed('data/v2.6_qom-v1.0.1/3_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_2, g_1, Omega, dim_1, dim_2]]), X, Y, g_2_0s)
+np.savez_compressed('data/v2.6_qutip-v4.7.3/4_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_2, g_1, Omega, dim_1, dim_2]]), X, Y, g_2_0s)

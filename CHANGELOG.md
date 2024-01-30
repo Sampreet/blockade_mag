@@ -1,5 +1,10 @@
 # Changelog
 
+## 2024/01/30 - 00 - Restructured Files
+> Toolbox version 1.0.1
+* Restructured data, notebooks and scripts.
+* Updated `README`.
+
 ## 2024/01/19 - 00 - Updated README
 > Toolbox version 1.0.1
 * Updated `README`.

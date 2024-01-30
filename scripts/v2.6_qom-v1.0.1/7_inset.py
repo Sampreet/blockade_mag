@@ -20,7 +20,7 @@ delta_q = 0.0 * kappa
 delta_1 = 0.0 * kappa
 delta_2 = 0.0 * kappa
 g_2 = 0.161 * g_1
-data = np.load('data/v2.6_qom-v1.0.1/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]) + '.npz')
+data = np.load('data/v2.6_qutip-v4.7.3/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]) + '.npz')
 Ts = data['arr_0']
 G_2_0s.append(data['arr_1'])
 
@@ -29,7 +29,7 @@ delta_q = 0.1 * kappa
 delta_1 = -0.276 * kappa
 delta_2 = 0.1 * kappa
 g_2 = 0.137 * g_1
-data = np.load('data/v2.6_qom-v1.0.1/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]) + '.npz')
+data = np.load('data/v2.6_qutip-v4.7.3/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]) + '.npz')
 G_2_0s.append(data['arr_1'])
 
 # plotter

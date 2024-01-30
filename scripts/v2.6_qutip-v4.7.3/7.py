@@ -68,4 +68,4 @@ for i in range(len(Ts)):
     g_2_0s[i] = qutip.expect(num, rho) / qutip.expect(n_1, rho)**2
 
 # save data
-np.savez_compressed('data/figures/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]), Ts, g_2_0s)
+np.savez_compressed('data/v2.6_qutip-v4.7.3/7_' + '_'.join([str(param) for param in [N, kappa, gamma, delta_q, delta_1, delta_2, g_1, g_2, Omega, dim]]), Ts, g_2_0s)
